@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/jasmine",
-    "start": "node index.js"
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",
