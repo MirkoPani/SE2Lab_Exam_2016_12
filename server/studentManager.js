@@ -134,8 +134,33 @@ var insertStudent = function insertStudent(student)
 }
 
 //AGGIUNGERE QUI SOTTO NUOVE FUNZIONI
+var getStudentLessThan = function getStudentLessThan(number)
+{
+    var tmp=[];
+   //search for the position
+    for (i=0; i < studentList.length; i++)
+	{
+            if (studentList[i].mark <number)
+                {
+					tmp.push(studentList[i]);
+                }
+    }
+    return tmp;
+}
 
-
+var getStudentGreaterThan = function getStudentGreaterThan(number)
+{
+    var tmp=[];
+   //search for the position
+    for (i=0; i < studentList.length; i++)
+	{
+            if (studentList[i].mark > number)
+                {
+					tmp.push(studentList[i]);
+                }
+    }
+    return tmp;
+}
 
 //export functions
 exports.searchStudentID = searchStudentID; 
@@ -144,3 +169,5 @@ exports.deleteStudentID = deleteStudentID;
 exports.deleteStudentSSN = deleteStudentSSN; 
 exports.insertStudent = insertStudent;  
 exports.getList = getList; 
+exports.getStudentLessThan= getStudentLessThan;
+exports.getStudentGreaterThan= getStudentGreaterThan;

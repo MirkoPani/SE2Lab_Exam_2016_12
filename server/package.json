@@ -1,0 +1,29 @@
+{
+  "name": "se2lab_exam_2016_12",
+  "version": "1.0.0",
+  "description": "Link to Heroku:",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MirkoPani/SE2Lab_Exam_2016_12.git"
+  },
+  "author": "Mirko Pani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MirkoPani/SE2Lab_Exam_2016_12/issues"
+  },
+  "homepage": "https://github.com/MirkoPani/SE2Lab_Exam_2016_12#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "jasmine": "^2.5.2",
+    "request": "^2.79.0",
+    "request-json": "^0.6.1",
+    "util": "^0.10.3"
+  }
+}

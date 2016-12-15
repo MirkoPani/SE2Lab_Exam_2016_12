@@ -12,10 +12,19 @@ produces:
 consumes:
   - application/json
 paths:
+  /:
+    get:
+      summary: Welcome page
+      description: it returns welcome page
+      responses:
+        200:
+          description: the home page
+
+
   /showList:
     get:
       summary: show list of students
-      description: it returns the complete lest of all students in the university
+      description: it returns the complete list of all students in the university
       responses:
         200:
           description: the home page
@@ -72,6 +81,48 @@ paths:
                 type: integer
         404:
           description: no students with that ID or SSN
+          
+  /addStudent:
+    post:
+      summary: add a student
+      description: add a student to the list of students
+      parameters:
+        - name: ID
+          in: formData
+          description: ID of the student
+          required: true
+          type: string
+        - name: SSN
+          in: formData
+          description: SSN of the student
+          required: false
+          type: string
+        - name: name
+          in: formData
+          description: name of the student
+          required: false
+          type: string
+        - name: address
+          in: formData
+          description: address of the student
+          required: false
+          type: string
+        - name: mark
+          in: formData
+          description: mark of the student
+          required: false
+          type: string  
+          
+      responses:
+        200:
+          description: return name of the student
+          
+        400:
+          description: Errore inserimento
+         
+        406:
+          description: Unaceptable input
+          
             
   /searchByMark:
     post:
@@ -106,4 +157,3 @@ definitions:
       address:
         type: string
         description: address of the student
-

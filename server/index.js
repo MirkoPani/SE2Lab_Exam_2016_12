@@ -272,3 +272,81 @@ app.listen(app.get('port'), function() {
 });
 
 //AGGIUNGERE QUI SOTTO NUOVE FUNZIONI
+
+
+/**
+ * @brief it returns a list of students that match a criteria
+ * @return return students that match a criteria
+ */
+app.post('/searchByMark', function(request, response) 
+{	
+    console.log("entrat in /searchbymark");
+	var headers = {};
+	headers["Access-Control-Allow-Origin"] = "*";
+	headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
+	headers["Access-Control-Allow-Credentials"] = false;
+	headers["Access-Control-Max-Age"] = '86400'; // 24 hours
+	headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept";
+	headers["Content-Type"] = "application/json";
+
+	var criteria;
+	
+	//check body and parameters
+	if ( typeof request.body !== 'undefined' && request.body)
+	{
+		if ( typeof request.body.mark !== 'undefined' && request.body.mark)
+            {
+			 criteria = request.body.mark;
+            }
+		else 
+			criteria = "not defined";
+	
+	}
+	else
+	{
+		criteria = "body undefined";
+	}
+    console.log("valore criteria: "+criteria);
+    if (criteria!="not defined" && criteria!="body undefined")
+	{
+	//Vogliamo la lista degli studenti con voto minore
+        var number=criteria.substring(1);
+        var studentList;
+        console.log("number: "+number);
+        if(criteria.charAt(0)=='<')
+            {
+                studentList=studentManager.getStudentLessThan(number);
+            }
+        //Voto maggiore
+        else if(criteria.charAt(0)=='>')
+            {
+            studentList= studentManager.getStudentGreaterThan(number);
+            }
+        else
+            {
+                //unaceptable input
+		response.writeHead(406, headers);
+		response.end(JSON.stringify("1"));
+            }
+        
+        //if exists
+		if (studentList != null)
+		{
+			response.writeHead(200, headers);
+			response.end(JSON.stringify(studentList));
+		}
+		else
+		{
+			response.writeHead(404, headers);
+			response.end(JSON.stringify());
+		}
+
+	}
+    else    
+	{
+		//unaceptable input
+		response.writeHead(406, headers);
+		response.end(JSON.stringify("1"));
+	}   
+
+});
